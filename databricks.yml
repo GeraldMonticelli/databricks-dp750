@@ -19,20 +19,6 @@ variables:
   environment:
     description: The environment for which to configure the bundle.
     default: development
-
-resources:
-  jobs:
-    order-pipeline-job:
-      name: ${var.environment}-order-pipeline
-      tasks:
-        - task_key: validate-data
-          notebook_task:
-            notebook_path: ./notebooks/validate.py
-        - task_key: transform-data
-          depends_on:
-            - task_key: validate-data
-          notebook_task:
-            notebook_path: ./notebooks/transform.py
   
 targets:
   dev:
